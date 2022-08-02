@@ -71,3 +71,25 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+
+---------
+```bash
+$ yarn global add sequelize
+$ yarn add sequelize sequelize-typescript pg-hstore pg
+$ yarn add -D @types/sequelize
+$ yarn add dotenv
+
+$ yarn add @nestjs/config
+
+$ yarn add @nestjs/passport passport passport-local
+$ yarn add bcrypt
+$ yarn add -D @types/passport-local
+
+$ yarn add @nestjs/jwt passport-jwt
+$ yarn add -D @types/passport-jwt
+
+$ yarn add class-transformer
+$ yarn add class-validator
+```
