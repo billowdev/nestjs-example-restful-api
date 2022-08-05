@@ -1,4 +1,4 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
@@ -52,19 +52,6 @@ export class AuthService {
 			throw new BadRequestException()
 		}
 
-	}
-
-	public async session(id: any): Promise<any> {
-		try {
-			const user = await this.userService.findOneById(id);
-			if (!user)
-				throw new ForbiddenException('Unauthorized')
-
-			const token = await this.generateToken({ ...user })
-			return { user, token };
-		} catch (error) {
-			throw new BadRequestException()
-		}
 	}
 
 	public async signup(user): Promise<SignDto> {

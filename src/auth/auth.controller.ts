@@ -1,10 +1,9 @@
-import { Controller, Body, Post, HttpCode, HttpStatus, UseGuards, Get } from '@nestjs/common';
+import { Controller, Body, Post, HttpCode, HttpStatus, UseGuards, Get, Request, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto, SignDto } from './dto';
+import { AuthDto, SessionDto, SignDto } from './dto';
 import { UserIsExist } from './guard/userIsExist.guard';
 import { LocalGuard } from './guard/local.guard';
 import { JwtGuard } from './guard';
-import { GetUser } from './decorator';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('auth')
@@ -12,13 +11,13 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 export class AuthController {
 	constructor(
 		private authService: AuthService
-		) { }
+	) { }
 
-	@ApiResponse({type: SignDto})
+	@ApiResponse({ type: SignDto })
 	@UseGuards(LocalGuard)
 	@HttpCode(HttpStatus.OK)
 	@Post('signin')
-	signin(@Body() dto: AuthDto): Promise<{ user: any; token: string; }> {
+	signin(@Body() dto: AuthDto): Promise<SignDto> {
 		return this.authService.signin(dto);
 	}
 
@@ -31,9 +30,14 @@ export class AuthController {
 	@UseGuards(JwtGuard)
 	@Get('session')
 	session(
-		@GetUser('id') userId: string,
-		) {
-		return this.authService.session(userId)
+		@Request() req: any
+	): Promise<SessionDto> {
+		try {
+			return req.user
+		} catch (error) {
+			throw new BadRequestException()
+		}
+
 	}
 
 
