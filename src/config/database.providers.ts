@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
-import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
+import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../@core/constants';
 import { databaseConfig } from './database.config';
-import { User } from 'src/user/model/user.entity';
-import { Article } from 'src/article/model';
+import { User } from 'src/user/entities/user.entity';
+import { Article } from 'src/article/entities';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,

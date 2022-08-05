@@ -1,0 +1,4 @@
+// Repository
+export const USER_REPOSITORY = 'USER_REPOSITORY';
+export const ARTICLE_REPOSITORY = 'ARTICLE_REPOSITORY';
+

@@ -5,31 +5,35 @@ import {
 	Table,
 	Model,
 	DataType,
+	HasMany
 } from 'sequelize-typescript';
+import { Article } from 'src/article/entities/article.entity';
 
-@Table
-export class User extends Model {
+@Table({
+	tableName: 'users',
+})
+export class User extends Model<User> {
 	@ApiProperty()
 	@Column({
 		type: DataType.UUID,
 		defaultValue: UUIDV4,
-        allowNull: false,
-        primaryKey: true,
+		allowNull: false,
+		primaryKey: true,
 	})
 	id: string
 
 	@ApiProperty()
 	@Column({
 		type: DataType.STRING(150),
-        unique: true,
-        allowNull: false,
+		unique: true,
+		allowNull: false,
 	})
 	email: string;
 
 	@ApiProperty()
 	@Column({
 		type: DataType.STRING(100),
-        allowNull: false,
+		allowNull: false,
 	})
 	password: string;
 
@@ -51,4 +55,8 @@ export class User extends Model {
 		type: DataType.STRING(10),
 	})
 	phone: string;
+
+
+	@HasMany(() => Article)
+	articles: Article[]
 }

@@ -1,4 +1,4 @@
-import { ARTICLE_REPOSITORY } from '../../constants';
+import { ARTICLE_REPOSITORY } from '../../@core/constants';
 import { Article } from './article.entity';
 
 export const articleProviders = [

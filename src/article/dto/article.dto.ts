@@ -1,24 +1,39 @@
-import { IsString, IsDate} from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsDate, IsOptional} from "class-validator";
 
 export class ArticleDto {
+	@ApiProperty({ required: false })
+	@IsOptional()
 	@IsString()
-	id: string;
-
-	@IsString()
-	title: string;
-
-	@IsString()
-	text: string;
-
-	@IsString()
-	type: string;
-
-	@IsString()
-	UserId: string;
-
-	@IsDate()
-	createdAt: Date;
+	id?: string;
 	
+	@ApiProperty({ required: false })
+	@IsString()
+	@IsOptional()
+	title?: string;
+	
+	@ApiProperty({ required: false })
+	@IsString()
+	@IsOptional()
+	text?: string;
+	
+	@ApiProperty({ required: false })
+	@IsString()
+	@IsOptional()
+	type?: string;
+	
+	@ApiProperty({ required: false })
+	@IsString()
+	@IsOptional()
+	UserId?: string;
+	
+	@ApiProperty({ required: false })
 	@IsDate()
-	updatedAt: Date;
+	@IsOptional()
+	createdAt?: Date;
+	
+	@ApiProperty({ required: false })
+	@IsDate()
+	@IsOptional()
+	updatedAt?: Date;
 }

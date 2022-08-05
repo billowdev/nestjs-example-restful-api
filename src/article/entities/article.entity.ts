@@ -5,10 +5,14 @@ import {
 	Table,
 	Model,
 	DataType,
+	ForeignKey,
 } from 'sequelize-typescript';
+import { User } from 'src/user/entities';
 
-@Table
-export class Article extends Model {
+@Table({
+	tableName: 'articles',
+})
+export class Article extends Model<Article> {
 	@ApiProperty()
 	@Column({
 		type: DataType.UUID,
@@ -31,4 +35,11 @@ export class Article extends Model {
 		allowNull: false,
 	})
 	text: string;
+
+	@ApiProperty()
+	@ForeignKey(() => User)
+	@Column({
+		type: DataType.UUID,
+	})
+	user_id: string
 }
